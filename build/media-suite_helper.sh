@@ -2079,7 +2079,6 @@ clean_suite() {
 
     if [[ $deleteSource == y ]]; then
         echo -e "\\t${orange}Deleting temporary build dirs...${reset}"
-        find . -maxdepth 5 -name "ab-suite.*.log" -delete
         find . -maxdepth 5 -type d -name "build-*bit" -exec rm -rf {} +
         find . -maxdepth 2 -type d -name "build" -exec test -f "{}/CMakeCache.txt" ';' -exec rm -rf {} ';'
         find . -maxdepth 3 -type f -name "Cargo.toml" -execdir cargo clean -q ";"
@@ -2651,6 +2650,5 @@ safe_git_clean() {
         -e "/recently_updated" \
         -e '/custom_updated' \
         -e '/do_not_build' \
-        -e '**/ab-suite.*.log' \
         "${@}"
 }
